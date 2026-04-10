@@ -1,0 +1,46 @@
+<header th:fragment="header" class="premium-nav">
+    <div class="nav-container">
+        <a th:href="@{/index}" class="nav-logo">
+            GEAR<span>NATION</span>
+        </a>
+
+        <nav class="nav-links">
+            <a th:href="@{/index}" class="link-item">HOME</a>
+            <a th:href="@{/showRecords}" class="link-item">MEMBERS</a>
+            <a th:href="@{/chatbot}" class="link-item">ChatBot ASSISTANT</a>
+            <div class="dropdown">
+                <span class="link-item">ELITE EIGHT</span>
+                <div class="dropdown-content">
+                    <a th:href="@{/GNBMW}">BMW</a>
+                    <a th:href="@{/GNBUGATTI}">BUGATTI</a>
+                    <a th:href="@{/GNAUDI}">AUDI</a>
+                    <a th:href="@{/GNPORSCHE}">PORSCHE</a>
+                    <a th:href="@{/GNFERRARI}">FERRARI</a>
+                    <a th:href="@{/GNMCLAREN}">MCLAREN</a>
+                    <a th:href="@{/GNASTONMARTIN}">ASTON MARTIN</a>
+                    <a th:href="@{/GNTOYOTA}">TOYOTA</a>
+                </div>
+            </div>
+            </nav>
+
+        <div class="nav-auth">
+            <th:block th:if="${session.loggedInUser == null}">
+                <a th:href="@{/login}" class="auth-link">LOGIN</a>
+                <a th:href="@{/signup}" class="auth-btn">JOIN NOW</a>
+            </th:block>
+
+            <div class="dropdown" th:if="${session.loggedInUser != null}">
+                <span class="auth-link" style="cursor: pointer; color: #0066b3;">
+                    MY GARAGE (<span th:text="${session.loggedInUser.userName}">User</span>)
+                </span>
+                <div class="dropdown-content">
+                    <a th:href="@{/profile}">My Profile</a>
+                    <a th:href="@{/editProfile}">Edit Details</a>
+                    <a th:href="@{/changePassword}">Change Password</a>
+                    <hr style="border: 0.5px solid #333; margin: 5px 0;">
+                    <a th:href="@{/logout}" style="color: #ff4d4d;">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

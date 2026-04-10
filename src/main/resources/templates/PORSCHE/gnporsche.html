@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | Porsche 911 & GT Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root { --porsche-red: #d5001c; --porsche-silver: #a2adbc; }
+        
+        .porsche-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/PORSCHE/porschebanner.png') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px; margin-top: 20px;
+            border-bottom: 4px solid var(--porsche-red);
+        }
+
+        .alternating-row {
+            display: flex; align-items: center; gap: 40px; margin-bottom: 80px;
+            opacity: 0; transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .alternating-row.show { opacity: 1; transform: translateY(0); }
+        .alternating-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .model-image img {
+            width: 100%; border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 2px solid rgba(213, 0, 28, 0.2);
+        }
+
+        .heritage-tag {
+            color: var(--porsche-red); font-weight: 700;
+            text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 2px; margin-bottom: 5px; display: block;
+        }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="porsche-hero anim-slide-up">
+            <div style="text-align: center;">
+                <h1 class="premium-title gradient-text">Porsche: Driven by Dreams</h1>
+                <p style="font-size: 1.2rem; color: #fff;">There is no substitute. Engineering the perfect line since 1948.</p>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="margin-top: -50px; position: relative; z-index: 10;">
+            <p>Porsche is the Precision Master of the CarNation Elite Eight, defined by the iconic rear-engine silhouette of the 911. From the track-focused GT3 RS to the all-electric Taycan, Porsche balances daily usability with raw racing pedigree.</p>
+        </section>
+
+        <section style="margin-top: 60px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 50px;">The 911 & GT Performance Lineup</h2>
+            
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/PORSCHE/911carrera.png}" alt="Porsche 911 Carrera">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="heritage-tag">The Icon</span>
+                    <h3 style="color: var(--porsche-red);">911 Carrera S</h3>
+                    <p>The timeless sports car. A twin-turbo flat-six engine delivering 443 HP, perfectly balanced for both the open road and the track.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/PORSCHE/gt3rs.png}" alt="Porsche GT3 RS">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="heritage-tag">Track Weapon</span>
+                    <h3 style="color: var(--porsche-red);">911 GT3 RS</h3>
+                    <p>Aerodynamics without compromise. Featuring a massive active rear wing and a 4.0L naturally aspirated engine that screams to 9,000 RPM.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/PORSCHE/taycanporsche.png}" alt="Porsche Taycan">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="heritage-tag">Electric Soul</span>
+                    <h3 style="color: var(--porsche-red);">Taycan Turbo S</h3>
+                    <p>Power, electrified. Delivering up to 750 HP with Launch Control, proving that the soul of a Porsche can exist without a drop of fuel.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/PORSCHE/caymangt4.png}" alt="Porsche 718 Cayman GT4">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="heritage-tag">Mid-Engine Balance</span>
+                    <h3 style="color: var(--porsche-red);">718 Cayman GT4 RS</h3>
+                    <p>The mid-engine masterpiece. Lightweight construction and a racing chassis make this one of the most agile Porsches ever built.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.2 });
+
+        const rows = document.querySelectorAll('.alternating-row');
+        rows.forEach((row) => observer.observe(row));
+    </script>
+</body>
+</html>

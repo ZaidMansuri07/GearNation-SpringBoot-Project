@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | Toyota GR Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root { --gr-red: #eb0a1e; --toyota-white: #ffffff; --toyota-black: #000000; }
+        
+        .toyota-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/TOYOTA/toyotabanner.png') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px; margin-top: 20px;
+            border-bottom: 4px solid var(--gr-red);
+            box-shadow: 0 0 30px rgba(235, 10, 30, 0.2);
+        }
+
+        .alternating-row {
+            display: flex; align-items: center; gap: 40px; margin-bottom: 80px;
+            opacity: 0; transform: translateY(50px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .alternating-row.show { opacity: 1; transform: translateY(0); }
+        .alternating-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .model-image img {
+            width: 100%; border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border-bottom: 4px solid var(--gr-red);
+        }
+
+        .gr-badge {
+            display: inline-block; padding: 5px 15px;
+            background: var(--gr-red); color: #fff;
+            font-weight: 700; font-size: 0.75rem;
+            border-radius: 4px; margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="toyota-hero anim-slide-up">
+            <div style="text-align: center;">
+                <h1 class="premium-title gradient-text">Toyota Gazoo Racing: Pushing the Limit</h1>
+                <p style="font-size: 1.2rem; color: #fff;">From the WRC to the street. Performance without compromise.</p>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="margin-top: -50px; position: relative; z-index: 10;">
+            <p>Toyota represents the "Street Performance" spirit of the CarNation collection, where Gazoo Racing (GR) transforms reliable daily drivers into track-ready beasts. With a focus on lightweight agility and turbocharged power, the GR series brings professional racing technology to enthusiasts everywhere.</p>
+        </section>
+
+        <section style="margin-top: 60px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 50px;">The Gazoo Racing Lineup</h2>
+            
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/TOYOTA/supratoyota.png}" alt="Toyota GR Supra">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="gr-badge">The Legend</span>
+                    <h3 style="color: var(--gr-red);">Toyota GR Supra</h3>
+                    <p>The return of an icon. 382 HP from a 3.0L twin-scroll turbocharged inline-six, delivering a perfect 50:50 weight balance for pure driving pleasure.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/TOYOTA/yaristoyota.png}" alt="Toyota GR Yaris">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="gr-badge">WRC DNA</span>
+                    <h3 style="color: var(--gr-red);">Toyota GR Yaris</h3>
+                    <p>Born for the World Rally Championship. A lightweight AWD powerhouse with a turbocharged 1.6L engine that redefines the hot-hatch segment.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/TOYOTA/corollatoyota.png}" alt="Toyota GR Corolla">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="gr-badge">AWD Master</span>
+                    <h3 style="color: var(--gr-red);">Toyota GR Corolla</h3>
+                    <p>300 HP and a highly customizable GR-FOUR all-wheel-drive system. It’s the ultimate practical performance car built for any road.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/TOYOTA/86toyota.png}" alt="Toyota GR86">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="gr-badge">The Purist</span>
+                    <h3 style="color: var(--gr-red);">Toyota GR86</h3>
+                    <p>Pure agility. A lightweight, rear-wheel-drive sports car that emphasizes handling and steering feedback over raw horsepower.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.alternating-row').forEach((row) => observer.observe(row));
+    </script>
+</body>
+</html>

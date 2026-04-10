@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Success | CarNation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .success-container {
+            text-align: center;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #0066b3, #e3000b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        .btn-login {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0066b3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .btn-login:hover {
+            background-color: #e3000b;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <h1>Welcome to the Elite Eight!</h1>
+        <p>Your CarNation account has been created successfully.</p>
+        <a th:href="@{/login}" class="btn-login">GO TO LOGIN</a>
+    </div>
+</body>
+</html>

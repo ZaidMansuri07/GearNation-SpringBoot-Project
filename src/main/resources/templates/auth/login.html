@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | CarNation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="page-fade-in">
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container" style="display: flex; justify-content: center; padding: 100px 0;">
+        <div class="glass-card reveal" style="width: 100%; max-width: 450px;">
+            <h2 class="gradient-text" style="text-align: center;">Welcome Back</h2>
+
+            <div th:if="${loginError}" 
+                 style="color: #ff4d4d; background: rgba(255, 77, 77, 0.1); border: 1px solid #ff4d4d; padding: 10px; border-radius: 5px; text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                <span th:text="${loginError}"></span>
+            </div>
+
+            <form th:action="@{/login}" method="post" style="margin-top: 25px;">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="john@example.com" required>
+                
+                <label style="display: block; margin-top: 15px;">Password</label>
+                <input type="password" name="password" required>
+                
+                <button type="submit" class="btn-submit" style="width: 100%; margin-top: 30px;">Login</button>
+            </form>
+            
+            <div style="margin-top: 15px; text-align: center;">
+    			<a th:href="@{/forgetPassword}" style="color: #0066b3; font-size: 0.85rem; text-decoration: none; font-weight: 600;">
+        			Forgot Password?
+    			</a>
+			</div>
+            
+            <div style="text-align: center; margin-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                <p style="color: #ccc; font-size: 0.9rem;">
+                    Don't have an account? 
+                    <a th:href="@{/signup}" style="color: #0066b3; text-decoration: none; font-weight: 600; margin-left: 5px;">Join CarNation</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<footer class="main-footer" th:fragment="footer">
+    <div class="footer-race-line"></div>
+    
+    <div class="container footer-grid">
+        <div class="footer-section">
+            <h2 class="premium-title" style="font-size: 1.8rem; margin-bottom: 15px;">CarNation</h2>
+            <p style="color: #bbb; font-size: 0.9rem; line-height: 1.6;">
+                The ultimate digital garage for the Elite Eight. Engineered for speed, built for the community.
+            </p>
+            <div class="social-links" style="margin-top: 20px;">
+                <span style="color: var(--accent-gold); margin-right: 15px;">INSTAGRAM</span>
+                <span style="color: var(--accent-gold);">YOUTUBE</span>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4 class="footer-heading">The Elite Eight</h4>
+            <ul class="footer-links">
+                <li><a th:href="@{/GNBMW}">BMW M Series</a></li>
+                <li><a th:href="@{/GNBUGATTI}">Bugatti Chiron</a></li>
+                <li><a th:href="@{/GNAUDI}">Audi RS Series</a></li>
+                <li><a th:href="@{/GNPORSCHE}">Porsche 911</a></li>
+                <li><a th:href="@{/GNFERRARI}">Ferrari Scuderia</a></li>
+                <li><a th:href="@{/GNMCLAREN}">McLaren Ultimate</a></li>
+                <li><a th:href="@{/GNASTONMARTIN}">Aston Martin DB</a></li>
+                <li><a th:href="@{/GNTOYOTA}">Toyota Gazoo Racing</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4 class="footer-heading">Pit Stop</h4>
+            <ul class="footer-links">
+                <li><a th:href="@{/index}">Home Base</a></li>
+                <li><a th:href="@{/signup}">Join the Nation</a></li>
+                <li><a th:href="@{/login}">Driver Login</a></li>
+                <li style="margin-top: 15px;">
+                    <span class="status-badge"><span class="dot"></span> System Live</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 CarNation | Designed for the 1% | <a href="#">Privacy Circuit</a></p>
+    </div>
+</footer>

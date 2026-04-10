@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | CarNation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="hero-section anim-slide-up" style="padding: 60px 0; text-align: center;">
+            <h1 class="premium-title gradient-text">The World of Automotive Excellence</h1>
+            <p class="hero-subtitle" style="max-width: 800px; margin: 0 auto; color: #bbb;">
+                Welcome to CarNation, the ultimate destination for enthusiasts, collectors, and drivers. 
+                We are a premier digital platform dedicated to the artistry, power, and innovation of 
+                the world’s most iconic automotive brands.
+            </p>
+        </section>
+
+        <section class="glass-card reveal" style="margin-bottom: 50px;">
+            <h2 style="color: var(--accent-gold); margin-bottom: 20px;">Our Mission</h2>
+            <p>Our mission is to bridge the gap between the dream and the drive. CarNation provides comprehensive insights into the manufacturers that define the industry. Whether you are researching your next Toyota for a cross-country journey or admiring the sculptural beauty of a Bugatti, we bring you the stories, the specs, and the spirit behind the wheel.</p>
+        </section>
+
+        <h2 class="premium-title reveal" style="font-size: 2rem; margin-bottom: 30px;">The CarNation Elite Eight</h2>
+        <div class="brand-grid" style="margin-bottom: 60px;">
+            <div class="glass-card reveal" style="animation-delay: 0.1s;">
+                <h3 style="color: var(--accent-gold);">The Speed Kings</h3>
+                <p>Bugatti’s record-breaking hypercars and McLaren’s track-to-road technology.</p>
+            </div>
+            <div class="glass-card reveal" style="animation-delay: 0.2s;">
+                <h3 style="color: var(--accent-gold);">The Thoroughbreds</h3>
+                <p>The racing heritage of Ferrari and the legendary precision of Porsche.</p>
+            </div>
+            <div class="glass-card reveal" style="animation-delay: 0.3s;">
+                <h3 style="color: var(--accent-gold);">The Luxury Leaders</h3>
+                <p>The sophisticated elegance of Aston Martin and the high-tech designs of Audi.</p>
+            </div>
+            <div class="glass-card reveal" style="animation-delay: 0.4s;">
+                <h3 style="color: var(--accent-gold);">The Driver’s Choice</h3>
+                <p>Diving into BMW’s commitment to the "Ultimate Driving Machine."</p>
+            </div>
+        </div>
+
+        <div class="about-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;">
+            <div class="glass-card reveal" style="animation-delay: 0.5s;">
+                <h2 style="color: var(--accent-gold);">Our Vision</h2>
+                <p>CarNation aims to be the world’s most trusted resource for automotive knowledge. We are constantly expanding our database to ensure every "citizen" of CarNation has the tools to appreciate the road ahead.</p>
+                <blockquote style="margin-top: 20px; font-style: italic; border-left: 3px solid var(--accent-gold); padding-left: 15px;">
+                    "In CarNation, the road never ends."
+                </blockquote>
+            </div>
+
+            <div class="glass-card reveal" style="animation-delay: 0.6s;">
+                <h2 style="color: var(--accent-gold);">Get in Touch</h2>
+                <form style="margin-top: 20px;">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <input type="email" placeholder="Your Email Address" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <textarea rows="4" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit" style="width: 100%; margin-top: 20px;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

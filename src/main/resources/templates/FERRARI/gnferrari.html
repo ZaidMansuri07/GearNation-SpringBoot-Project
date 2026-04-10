@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | Ferrari Scuderia Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root { --ferrari-red: #ff2800; --ferrari-yellow: #ffeb00; }
+        
+        .ferrari-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/FERRARI/ferraribanner.png') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px; margin-top: 20px;
+            border-bottom: 4px solid var(--ferrari-red);
+            box-shadow: 0 0 30px rgba(255, 40, 0, 0.2);
+        }
+
+        .alternating-row {
+            display: flex; align-items: center; gap: 40px; margin-bottom: 80px;
+            opacity: 0; transform: translateY(50px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .alternating-row.show { opacity: 1; transform: translateY(0); }
+        .alternating-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .model-image img {
+            width: 100%; border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border-bottom: 4px solid var(--ferrari-red);
+        }
+
+        .scuderia-badge {
+            display: inline-block; padding: 5px 15px;
+            background: var(--ferrari-yellow); color: #000;
+            font-weight: 800; font-size: 0.75rem;
+            border-radius: 4px; margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="ferrari-hero anim-slide-up">
+            <div style="text-align: center;">
+                <h1 class="premium-title gradient-text">Ferrari: Pure Emotion</h1>
+                <p style="font-size: 1.2rem; color: #fff;">Excellence in every detail. Built for the Prancing Horse.</p>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="margin-top: -50px; position: relative; z-index: 10;">
+            <p>Ferrari is the soulful heart of the CarNation collection, blending unparalleled Italian craftsmanship with a winning racing heritage. Every Ferrari is a masterpiece of aerodynamics and engine symphony, designed to provide a visceral driving experience unlike any other.</p>
+        </section>
+
+        <section style="margin-top: 60px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 50px;">The Prancing Horse Lineup</h2>
+            
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/FERRARI/296gtbferrari.png}" alt="Ferrari 296 GTB">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="scuderia-badge">Hybrid V6</span>
+                    <h3 style="color: var(--ferrari-red);">Ferrari 296 GTB</h3>
+                    <p>Defining the concept of driving fun. A mid-rear-engined Berlinetta that combines a V6 turbo with an electric motor to deliver 818 HP.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/FERRARI/sf90ferrari.png}" alt="Ferrari SF90">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="scuderia-badge">PHEV Supercar</span>
+                    <h3 style="color: var(--ferrari-red);">SF90 Stradale</h3>
+                    <p>The first-ever series production PHEV Ferrari. With 986 HP and all-wheel drive, it represents the absolute pinnacle of current Ferrari performance.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/FERRARI/812ferrari.png}" alt="Ferrari 812">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="scuderia-badge">V12 Masterpiece</span>
+                    <h3 style="color: var(--ferrari-red);">812 Competizione</h3>
+                    <p>The ultimate expression of the front-engined V12. 819 HP and a 9,500 RPM redline create a mechanical symphony of power.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/FERRARI/f80ferrari.png}" alt="Ferrari F80">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="scuderia-badge">Ultimate Series</span>
+                    <h3 style="color: var(--ferrari-red);">Ferrari F80</h3>
+                    <p>The newest halo car. Engineering perfection that utilizes Formula 1 hybrid technology to push the boundaries of road-legal speed for 2026.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.alternating-row').forEach((row) => observer.observe(row));
+    </script>
+</body>
+</html>

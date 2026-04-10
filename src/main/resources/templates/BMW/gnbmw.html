@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | BMW M Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .cs-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/BMW/bmwbanner3.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin-top: 20px;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+        .cs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .cs-table th, .cs-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .cs-table th { background: var(--accent-gold); color: #000; }
+        
+        /* Alternating/Zigzag & Animation Styles */
+        .alternating-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .alternating-row.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .alternating-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .model-image { flex: 1.2; }
+        .model-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .model-info { flex: 0.8; padding: 30px; }
+
+        @media (max-width: 992px) {
+            .alternating-row, .alternating-row:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="cs-hero anim-slide-up">
+            <div style="text-align: center; padding: 0 20px;">
+                <h1 class="premium-title gradient-text">The BMW's Ultimate M series with CS competition</h1>
+                <p style="font-size: 1.2rem; color: #fff;">Maximum power. Minimum weight. The pure essence of BMW M.</p>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="margin-top: -50px; position: relative; z-index: 10;">
+            <p>Built with a high-revving TwinPower Turbo engine and track-tuned M xDrive, the CS lineage cuts significant weight through extensive carbon fiber (CFRP) integration. It’s a precision machine designed to dominate the 0–60 sprint in as little as 3 seconds.</p>
+        </section>
+        
+        <section class="reveal m-heritage-section">
+    <div class="m-heritage-header">
+        <h2 class="gradient-text">BMW M: THE MOST POWERFUL LETTER IN THE WORLD</h2>
+    </div>
+
+    <div class="heritage-grid">
+        <div class="heritage-text">
+            <h3>The Origin Story</h3>
+            <p>Born in 1972, BMW M (originally BMW Motorsport) wasn't built for the showroom—it was built for the podium. What started as a small team of 35 engineers dedicated to racing icons like the "Batmobile" 3.0 CSL quickly turned into a global obsession. In 1978, the legendary M1 brought that track DNA to the street, and the world has been chasing the "M" badge ever since.</p>
+        </div>
+        <div class="heritage-stats">
+            <div class="stat-item">
+                <span class="stat-title">ESTABLISHED</span>
+                <span class="stat-value">1972</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-title">ORIGINAL TEAM</span>
+                <span class="stat-value">35 ENGINEERS</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="secret-sauce-box">
+        <h3>The "Secret Sauce": What Makes an M an M?</h3>
+        <p class="sauce-intro">An M car isn't just a BMW with a bigger engine; it’s a total reimagining of the vehicle.</p>
+        
+        <ul class="sauce-list">
+            <li><strong>The Chassis:</strong> Reinforced for "surgical" handling. M cars aim for a near 50:50 weight distribution.</li>
+            <li><strong>The M Button:</strong> Instant swap from a "comfortable cruiser" to a "track-ready beast."</li>
+            <li><strong>Aero-First Design:</strong> Every vent and quad exhaust pipe is there to keep the car glued to the tarmac.</li>
+            <li><strong>The Tricolor Legacy:</strong> The iconic Blue, Violet, and Red stripes represent the union of BMW and the passion of racing.</li>
+        </ul>
+    </div>
+
+    <div class="obsession-quote">
+        <p>"BMW M doesn't just build cars; it builds adrenaline. It's the perfect bridge between the weekday commute and the Sunday circuit."</p>
+    </div>
+</section>
+
+
+        
+               <section style="margin-top: 60px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 50px;">The M Series Elite Showcase</h2>
+            
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/BMW/m2bmw.png}" alt="BMW M2">
+                </div>
+                <div class="glass-card model-info">
+                    <h3 style="color: var(--accent-gold);">M2: The Purist's Coupe</h3>
+                    <p>Compact, agile, and incredibly powerful. The 2026 M2 delivers 473 hp, while the CS variant pushes 523 hp for those who demand ultimate track precision.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/BMW/m3bmw.png}" alt="BMW M3">
+                </div>
+                <div class="glass-card model-info">
+                    <h3 style="color: var(--accent-gold);">M3: The Performance Icon</h3>
+                    <p>The global benchmark for sports sedans. Featuring M xDrive precision and a 0–60 mph time of ~3.4s, it perfectly blends four-door utility with supercar speed.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/BMW/m4bmw.png}" alt="BMW M4">
+                </div>
+                <div class="glass-card model-info">
+                    <h3 style="color: var(--accent-gold);">M4: Precision Styling</h3>
+                    <p>The stylish sibling to the M3. With a lighter chassis and adaptive M exhaust, the M4 Coupe and Convertible are built for both the street and the circuit.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/BMW/m5bmw.png}" alt="BMW M5">
+                </div>
+                <div class="glass-card model-info">
+                    <h3 style="color: var(--accent-gold);">M5: Hybrid V8 Powerhouse</h3>
+                    <p>A new era of luxury performance. The 2026 M5 features a 717 hp Hybrid V8, offering world-class comfort and terrifying acceleration.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/BMW/m8bmw.png}" alt="BMW M8">
+                </div>
+                <div class="glass-card model-info">
+                    <h3 style="color: var(--accent-gold);">M8: The Flagship Beast</h3>
+                    <p>The pinnacle of BMW luxury and speed. A 617 hp V8 powerhouse available in Coupe, Convertible, and Gran Coupe styles for the ultimate grand tourer experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="text-align: center; margin-bottom: 60px; border: 1px solid var(--accent-gold);">
+            <h2 style="color: var(--accent-gold);">Contact for Exclusive M Orders</h2>
+            <p>M Specialist Hotline: <strong>1-888-BMW-M-PERF</strong></p>
+            <p>Private Preview Booking: <strong>m.exclusive@bmw.com</strong></p>
+            <button class="btn-submit" style="margin-top: 20px;">Explore M Individual Program</button>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const rows = document.querySelectorAll('.alternating-row');
+        rows.forEach((row) => observer.observe(row));
+    </script>
+    <script>
+    const observerOptions = {
+        threshold: 0.25 // Triggers when 25% of the row is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.alternating-row').forEach(row => {
+        observer.observe(row);
+    });
+</script>
+</body>
+</html>

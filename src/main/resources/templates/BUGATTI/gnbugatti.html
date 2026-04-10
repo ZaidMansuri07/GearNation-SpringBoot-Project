@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | Bugatti Chiron Lineage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root { 
+            --bugatti-blue: #0066ff; 
+            --race-red: #ff0033; 
+            --deep-bg: #0a0a0b;
+        }
+        
+        body { background: var(--deep-bg); color: #fff; }
+
+        .race-container { position: relative; padding: 50px 0; }
+
+        /* The Vertical Racing Line */
+        .race-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--race-red), var(--race-red), transparent);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .alternating-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .alternating-row.show { opacity: 1; transform: translateY(0); }
+
+        /* Track Nodes */
+        .race-node {
+            position: absolute;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            background: var(--race-red);
+            border: 4px solid #fff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px var(--race-red);
+        }
+
+        .model-image img {
+            width: 100%;
+            border-radius: 5px;
+            border-bottom: 4px solid var(--bugatti-blue);
+            filter: grayscale(40%) brightness(80%);
+            transition: 0.6s ease;
+        }
+
+        .alternating-row:hover .model-image img { 
+            filter: grayscale(0%) brightness(110%);
+            transform: scale(1.02);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 255, 0.2);
+            padding: 35px;
+        }
+        
+        .spec-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--race-red);
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="hero-section anim-slide-up" style="text-align: center; padding: 80px 0;">
+            <h1 class="premium-title" style="color: var(--bugatti-blue);">BUGATTI CHIRON</h1>
+            <p class="gradient-text" style="font-size: 1.5rem; letter-spacing: 5px; font-weight: 700;">THE EVOLUTION OF SPEED</p>
+        </section>
+
+        <div class="race-container">
+            <div class="race-line"></div>
+
+            <div class="alternating-row">
+                <div class="race-node"></div>
+                <div class="model-image" style="flex: 1.2;">
+                    <img th:src="@{/images/BUGATTI/Chironstandard.png}" alt="Bugatti Chiron">
+                </div>
+                <div class="glass-card model-info" style="flex: 0.8;">
+                    <span class="spec-badge">1,500 HP</span>
+                    <h2 style="color: var(--bugatti-blue);">Chiron Standard</h2>
+                    <p>The genesis of a legend. An 8.0-liter W16 engine with four turbochargers, redefining what a production car can achieve.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row" style="flex-direction: row-reverse;">
+                <div class="race-node"></div>
+                <div class="model-image" style="flex: 1.2;">
+                    <img th:src="@{/images/BUGATTI/chironsport.png}" alt="Chiron Sport">
+                </div>
+                <div class="glass-card model-info" style="flex: 0.8;">
+                    <span class="spec-badge">AGILITY FOCUS</span>
+                    <h2 style="color: var(--bugatti-blue);">Chiron Sport</h2>
+                    <p>Focusing on agility. 18kg lighter than the standard Chiron with stiffer suspension for sharper cornering and track response.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="race-node"></div>
+                <div class="model-image" style="flex: 1.2;">
+                    <img th:src="@{/images/BUGATTI/chironpursport.png}" alt="Chiron Pur Sport">
+                </div>
+                <div class="glass-card model-info" style="flex: 0.8;">
+                    <span class="spec-badge">MAX DOWNFORCE</span>
+                    <h2 style="color: var(--bugatti-blue);">Chiron Pur Sport</h2>
+                    <p>Built for the curves. Shorter gear ratios and a massive 1.9-meter fixed rear wing for maximum mechanical grip.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row" style="flex-direction: row-reverse;">
+                <div class="race-node"></div>
+                <div class="model-image" style="flex: 1.2;">
+                    <img th:src="@{/images/BUGATTI/chironss300.png}" alt="Super Sport 300+">
+                </div>
+                <div class="glass-card model-info" style="flex: 0.8;">
+                    <span class="spec-badge">304.77 MPH</span>
+                    <h2 style="color: var(--race-red);">Chiron Super Sport 300+</h2>
+                    <p>The world record breaker. The first hypercar to break the 300 mph barrier, featuring 1,600 HP and a long-tail aerodynamic body.</p>
+                </div>
+            </div>
+        </div>
+        <div class="glass-card reveal" style="text-align: center; border: 1px solid var(--bugatti-orange); margin-bottom: 60px; padding: 40px;">
+    <span style="color: var(--bugatti-orange); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem;">Beyond the Limit of Physics</span>
+    <h3 style="color: #fff; font-size: 2.5rem; margin: 15px 0;">CHIRON SUPER SPORT 300+</h3>
+    
+    <p style="max-width: 700px; margin: 0 auto 30px; line-height: 1.8; color: #ccc;">
+        In 2019, Bugatti shattered the automotive world's expectations by becoming the first manufacturer to exceed 300 miles per hour. 
+        This exclusive edition is a masterpiece of **Longtail aerodynamics** and raw **W16 power**, limited to only 30 units worldwide. 
+        It isn't just a car; it is a historical landmark of human engineering.
+    </p>
+
+    <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 30px; border-top: 1px solid #333; padding-top: 20px;">
+        <div>
+            <h4 style="color: var(--bugatti-orange); margin: 0;">1,600 PS</h4>
+            <p style="font-size: 0.7rem; color: #888;">QUAD-TURBO W16</p>
+        </div>
+        <div style="border-left: 1px solid #333; padding-left: 30px;">
+            <h4 style="color: var(--bugatti-orange); margin: 0;">490.48 KM/H</h4>
+            <p style="font-size: 0.7rem; color: #888;">WORLD RECORD SPEED</p>
+        </div>
+        <div style="border-left: 1px solid #333; padding-left: 30px;">
+            <h4 style="color: var(--bugatti-orange); margin: 0;">CARBON</h4>
+            <p style="font-size: 0.7rem; color: #888;">FIBER BODYWORK</p>
+        </div>
+    </div>
+
+    <a th:href="@{/CHIRON-SS-300}" class="btn-submit" style="display: inline-block; background: var(--bugatti-orange); color: #fff; padding: 18px 45px; text-decoration: none; font-weight: 700; border-radius: 4px; transition: 0.3s; box-shadow: 0 10px 20px rgba(255, 78, 0, 0.3);">
+        REVIEW OUR EXCLUSIVE BUGATTI CHIRON SUPER SPORT 300+ 
+    </a>
+</div>
+	
+	<section class="heritage-quote reveal" style="background: #000; padding: 80px 0; text-align: center; border-top: 1px solid #1a1a1a;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+        
+        <img th:src="@{/images/BUGATTI/bugattisign.png}" 
+             alt="Bugatti Quote" 
+             style="width: 100%; max-width: 750px; filter: brightness(1.1); transition: 0.5s ease;">
+        
+        <p style="color: #444; letter-spacing: 4px; font-size: 0.8rem; margin-top: 20px; text-transform: uppercase;">
+            Ettore Bugatti — Founding Vision
+        </p>
+    </div>
+</section>
+
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.alternating-row').forEach((row) => observer.observe(row));
+    </script>
+</body>
+</html>

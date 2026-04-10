@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | CarNation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container auth-container">
+        <div class="auth-card">
+            <h2>Join CarNation</h2>
+            <p>Create an account to save your favorite luxury brands</p>
+            
+  <form th:action="@{/signup}" th:object="${user}" method="post" class="register-form">
+    
+    <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" th:field="*{userName}" placeholder="John Doe" />
+        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color: #e3000b; font-size: 0.8rem;"></span>
+    </div>	
+
+    <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" th:field="*{email}" placeholder="john@example.com">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: #e3000b; font-size: 0.8rem;"></span>
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" th:field="*{password}" placeholder="Create a password">
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: #e3000b; font-size: 0.8rem;"></span>
+    </div>
+
+    <button type="submit" class="btn-submit">JOIN CARNATION</button>
+</form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

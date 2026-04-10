@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | Audi RS Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root { --audi-cyan: #00f2ff; --audi-silver: #e0e0e0; }
+        
+        /* Digital Tech Hero */
+        .audi-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/AUDI/audibanner.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            margin-top: 20px;
+            border-bottom: 4px solid var(--audi-cyan);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        /* Scroll Animation Styles */
+        .alternating-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .alternating-row.show { opacity: 1; transform: translateY(0); }
+        .alternating-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .model-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            border: 2px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .spec-label { color: var(--audi-cyan); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="audi-hero anim-slide-up">
+            <div style="text-align: center; padding: 0 20px;">
+                <h1 class="premium-title gradient-text">Audi: Progress Through Technology</h1>
+                <p style="font-size: 1.2rem; color: #fff;">Vorsprung durch Technik. The pinnacle of Quattro performance.</p>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="margin-top: -50px; position: relative; z-index: 10;">
+            <p>Audi stands as the Luxury Leader within the CarNation Elite Eight, celebrated for integrating cutting-edge technology with the legendary Quattro all-wheel-drive system. From the 5-cylinder heritage of the RS3 to the futuristic power of the RS e-tron GT, every model is a testament to digital precision.</p>
+        </section>
+
+        <section style="margin-top: 60px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 50px;">The RS & R8 Performance Lineup</h2>
+            
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/AUDI/rs3audi.png}" alt="Audi RS3">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="spec-label">5-Cylinder Heritage</span>
+                    <h3 style="color: var(--audi-cyan);">Audi RS3 Sedan</h3>
+                    <p>Experience the unique roar of the 2.5L TFSI engine. With 401 HP and the innovative RS Torque Splitter, it delivers unmatched agility in its class.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/AUDI/rs6audi.png}" alt="Audi RS6">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="spec-label">Twin-Turbo V8</span>
+                    <h3 style="color: var(--audi-cyan);">Audi RS6 Performance</h3>
+                    <p>The king of wagons. Delivering 621 HP, this family-sized beast launches from 0-60 mph in a staggering 3.3 seconds.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/AUDI/etronaudi.png}" alt="Audi RS e-tron GT">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="spec-label">Electric GT</span>
+                    <h3 style="color: var(--audi-cyan);">RS e-tron GT</h3>
+                    <p>The future of Audi performance. A dual-motor electric setup providing up to 637 HP with an 800-volt high-speed charging system.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/AUDI/r8audi.png}" alt="Audi R8">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="spec-label">Naturally Aspirated V10</span>
+                    <h3 style="color: var(--audi-cyan);">Audi R8 V10 GT</h3>
+                    <p>A final tribute to a mid-engine masterpiece. This GT variant features rear-wheel drive and a 5.2-liter V10 that screams to 8,700 RPM.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        // Scroll trigger script for the Audi showcase
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.2 });
+
+        const rows = document.querySelectorAll('.alternating-row');
+        rows.forEach((row) => observer.observe(row));
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarNation | Aston Martin DB Series</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        :root { --aston-green: #006341; --aston-silver: #c0c0c0; }
+        
+        .aston-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('/images/ASTONMARTIN/astonbanner.png') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px; margin-top: 20px;
+            border-bottom: 4px solid var(--aston-green);
+            box-shadow: 0 0 30px rgba(0, 99, 65, 0.2);
+        }
+
+        .alternating-row {
+            display: flex; align-items: center; gap: 40px; margin-bottom: 80px;
+            opacity: 0; transform: translateY(50px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .alternating-row.show { opacity: 1; transform: translateY(0); }
+        .alternating-row:nth-child(even) { flex-direction: row-reverse; }
+
+        .model-image img {
+            width: 100%; border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border-bottom: 4px solid var(--aston-green);
+        }
+
+        .luxury-badge {
+            display: inline-block; padding: 5px 15px;
+            background: var(--aston-green); color: #fff;
+            font-weight: 600; font-size: 0.75rem;
+            border-radius: 4px; margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container">
+        <section class="aston-hero anim-slide-up">
+            <div style="text-align: center;">
+                <h1 class="premium-title gradient-text">Aston Martin: Intensity. Driven.</h1>
+                <p style="font-size: 1.2rem; color: #fff;">Power, Beauty, and Soul. The ultimate British GT experience.</p>
+            </div>
+        </section>
+
+        <section class="glass-card reveal" style="margin-top: -50px; position: relative; z-index: 10;">
+            <p>Aston Martin represents the "Gentleman Racer" of the CarNation collection, blending timeless British elegance with raw V12 power. Known as the choice of secret agents and racing enthusiasts alike, every model is a handcrafted masterpiece of aluminum and leather.</p>
+        </section>
+
+        <section style="margin-top: 60px;">
+            <h2 class="gradient-text" style="text-align: center; margin-bottom: 50px;">The Grand Tourer & Hypercar Lineup</h2>
+            
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/ASTONMARTIN/db12aston.png}" alt="Aston Martin DB12">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="luxury-badge">Super Tourer</span>
+                    <h3 style="color: var(--aston-green);">Aston Martin DB12</h3>
+                    <p>The world's first Super Tourer. 671 HP from a twin-turbo V8, combining class-leading performance with an ultra-luxury interior.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/ASTONMARTIN/vantageaston.png}" alt="Aston Martin Vantage">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="luxury-badge">True Sports Car</span>
+                    <h3 style="color: var(--aston-green);">Aston Martin Vantage</h3>
+                    <p>Engineered for real drivers. A visceral 656 HP machine with perfect 50:50 weight distribution for pure cornering thrill.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/ASTONMARTIN/dbsaston.png}" alt="Aston Martin DBS">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="luxury-badge">V12 Flagship</span>
+                    <h3 style="color: var(--aston-green);">DBS 770 Ultimate</h3>
+                    <p>The final word in V12 power. 759 HP and a presence that dominates any road, representing the absolute pinnacle of the DB lineage.</p>
+                </div>
+            </div>
+
+            <div class="alternating-row">
+                <div class="model-image">
+                    <img th:src="@{/images/ASTONMARTIN/valkyrieaston.png}" alt="Aston Martin Valkyrie">
+                </div>
+                <div class="glass-card model-info">
+                    <span class="luxury-badge">F1 for the Road</span>
+                    <h3 style="color: var(--aston-green);">Aston Martin Valkyrie</h3>
+                    <p>A true F1 car for the street. Designed with Red Bull Racing, featuring a 6.5L V12 that produces a mind-bending 1,140 HP.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.alternating-row').forEach((row) => observer.observe(row));
+    </script>
+</body>
+</html>
