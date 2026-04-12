@@ -155,6 +155,18 @@
     </main>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
-
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script th:if="${message}">
+    		Swal.fire({
+        		title: 'Feedback Received!',
+        		text: "[[${message}]]",
+        		icon: 'success',
+        		background: '#1a1a1a',
+        		color: '#fff',
+        		confirmButtonColor: '#0066b3'
+    			});
+		</script>	
+	
 </body>
 </html>

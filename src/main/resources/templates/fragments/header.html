@@ -6,8 +6,9 @@
 
         <nav class="nav-links">
             <a th:href="@{/index}" class="link-item">HOME</a>
-            <a th:href="@{/showRecords}" class="link-item">MEMBERS</a>
-            <a th:href="@{/chatbot}" class="link-item">ChatBot ASSISTANT</a>
+            <a th:href="@{/admin/showRecords}" class="link-item" th:if="${session.isAdmin}">MEMBERS</a>
+            <a th:href="@{/chatbot}" class="link-item">CHATBOT ASSISTANT</a>
+            
             <div class="dropdown">
                 <span class="link-item">ELITE EIGHT</span>
                 <div class="dropdown-content">
@@ -21,7 +22,7 @@
                     <a th:href="@{/GNTOYOTA}">TOYOTA</a>
                 </div>
             </div>
-            </nav>
+        </nav>
 
         <div class="nav-auth">
             <th:block th:if="${session.loggedInUser == null}">
@@ -30,11 +31,11 @@
             </th:block>
 
             <div class="dropdown" th:if="${session.loggedInUser != null}">
-                <span class="auth-link" style="cursor: pointer; color: #0066b3;">
+                <span class="auth-link" style="cursor: pointer; color: #0066b3; font-weight: bold;">
                     MY GARAGE (<span th:text="${session.loggedInUser.userName}">User</span>)
                 </span>
                 <div class="dropdown-content">
-                    <a th:href="@{/profile}">My Profile</a>
+                    <a th:href="@{/profile}">View Profile</a>
                     <a th:href="@{/editProfile}">Edit Details</a>
                     <a th:href="@{/changePassword}">Change Password</a>
                     <hr style="border: 0.5px solid #333; margin: 5px 0;">

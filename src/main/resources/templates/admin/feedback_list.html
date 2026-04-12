@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Logs | GearNation</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <style>
+        .feedback-container { padding: 40px; color: white; background: #0b0b0b; min-height: 100vh; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0, 0, 0, 0.6); }
+        .table th, .table td { padding: 12px; border: 1px solid #333; text-align: left; }
+        .table th { background-color: #111; color: #0066b3; }
+        .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate { color: #ccc !important; }
+    </style>
+</head>
+<body class="page-fade-in">
+
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="feedback-container">
+        <h2 class="gradient-text">USER FEEDBACK LOGS</h2>
+        
+        <div style="margin-bottom: 20px;">
+            <a th:href="@{/admin/showRecords}" class="btn-luxury" style="text-decoration: none;">BACK TO DIRECTORY</a>
+        </div>
+
+        <div class="glass-card" style="padding: 20px; background: rgba(17, 17, 17, 0.9);">
+            <table id="feedbackTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>User Email</th>
+                        <th>Feedback Message</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="f : ${feedbacks}">
+                        <td th:text="${f.email}" style="color: #0066b3; font-weight: bold;">user@example.com</td>
+                        <td th:text="${f.userName}">Sample feedback message will appear here...</td>
+                        <td><span style="color: #00ff00; font-size: 0.8rem;">● RECEIVED</span></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(feedbacks)}">
+                        <td colspan="3" style="text-align: center; color: #666;">No feedback logs found in the database.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#feedbackTable').DataTable({
+                "language": { "search": "SEARCH FEEDBACK:" },
+                "pageLength": 10
+            });
+        });
+    </script>
+</body>
+</html>

@@ -39,8 +39,27 @@
             </ul>
         </div>
     </div>
-
+	
     <div class="footer-bottom">
         <p>&copy; 2026 CarNation | Designed for the 1% | <a href="#">Privacy Circuit</a></p>
     </div>
+<div class="admin-access-section" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #222; text-align: center;">
+    <h4 style="color: #444; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 15px;">SECURE ADMINISTRATIVE GATEWAY</h4>
+    
+    <form th:action="@{/adminLogin}" method="post" style="display: inline-block;">
+        <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
+            <input type="password" 
+                   name="adminPassword" 
+                   placeholder="Enter Admin Access Key" 
+                   required 
+                   style="background: #111; border: 1px solid #333; color: #0066b3; padding: 10px 15px; border-radius: 4px; width: 250px; outline: none; transition: 0.3s;">
+            
+            <button type="submit" class="btn-luxury" style="padding: 10px 20px; font-size: 0.8rem; margin-bottom: 0;">
+                AUTHENTICATE
+            </button>
+        </div>
+    </form>
+    
+    <p style="margin-top: 15px; color: #333; font-size: 0.7rem;">&copy; 2026 GearNation | Unauthorized Access is Prohibited</p>
+</div>
 </footer>

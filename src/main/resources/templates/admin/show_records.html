@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Directory | GearNation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .table-container { padding: 40px; color: white; background: #0b0b0b; min-height: 100vh; }
+        .dataTables_filter input { background: #222; color: white; border: 1px solid #0066b3; border-radius: 5px; padding: 5px 10px; margin-left: 10px; }
+        .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate { color: #ccc !important; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 20px; background: rgba(0, 0, 0, 0.6); }
+        .table th, .table td { padding: 12px; border: 1px solid #333; text-align: left; }
+        .table th { background-color: #111; color: #0066b3; }
+        .btn-luxury { background: linear-gradient(45deg, #0066b3, #004a80); color: white; border: none; padding: 8px 18px; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; transition: 0.3s; display: inline-block; }
+        .btn-luxury:hover { opacity: 0.8; transform: translateY(-2px); }
+    </style>
+</head>
+<body class="page-fade-in">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <main class="table-container">
+        <h2 class="gradient-text">Member Directory</h2>
+        <button type="button" class="btn-luxury" onclick="welcome()" style="margin-bottom: 20px;">Check System Status</button>
+        <div style="margin-bottom: 10px; color: #888; font-size: 0.9rem;">
+            TOTAL ACTIVE MEMBERS: <span th:text="${#lists.size(users)}" style="color: #0066b3; font-weight: bold;">0</span>
+        </div>
+        <table id="example" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th style="text-align: center;">Actions</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.registerId}">ID</td>
+                    <td th:text="${user.userName}">Name</td>
+                    <td th:text="${user.email}">Email</td>
+                    <td style="text-align: center;">
+                        <a th:href="@{/admin/editUser/{id}(id=${user.registerId})}" class="btn-luxury">Edit</a>
+                        <button class="btn-luxury" style="background: linear-gradient(45deg, #e3000b, #990000);" 
+                                th:onclick="'confirmDelete(' + ${user.registerId} + ')'">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() { $('#example').DataTable({ "language": { "search": "FILTER LOGS:" } }); });
+        function welcome() { Swal.fire({ title: 'Access Verified', text: 'System records synchronized.', icon: 'success', background: '#1a1a1a', color: '#fff' }); }
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Remove Member?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e3000b',
+                confirmButtonText: 'Yes, Delete',
+                background: '#1a1a1a', color: '#fff'
+            }).then((result) => {
+                if (result.isConfirmed) { window.location.href = "/admin/deleteUser/" + id; }
+            });
+        }
+    </script>
+</body>
+</html>
