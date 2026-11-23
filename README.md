@@ -10,12 +10,32 @@ GearNation is a Spring Boot web application designed to showcase elite automotiv
 - **Responsive Design**: Custom CSS styling with a dark-themed "Carbon Fiber" aesthetic.
 
 ## 🛠️ Tech Stack
-- **Backend**: Java 21, Spring Boot 3
+- **Backend**: Java 21, Spring Boot 4
 - **Frontend**: Thymeleaf, HTML5, CSS3, JavaScript
 - **Database**: MySQL (via XAMPP)
-- **Dependencies**: Spring Data JPA, Spring Web, Validation API
+- **Dependencies**: Spring Data JPA, Spring Web MVC, Validation API, Lombok
 
 ## ⚙️ Setup Instructions
-1. **Clone the Repo**:
+
+**Prerequisites:** JDK 21 and MySQL running on port 3306 (XAMPP works).
+
+1. **Clone the repo**:
    ```bash
-   git clone [https://github.com/Djo022/GearNation-SpringBoot-Project.git](https://github.com/Djo022/GearNation-SpringBoot-Project.git)
+   git clone https://github.com/ZaidMansuri07/GearNation-SpringBoot-Project.git
+   cd GearNation-SpringBoot-Project
+   ```
+
+2. **Create the database** (tables are created automatically on first run):
+   ```sql
+   CREATE DATABASE carnation;
+   ```
+
+3. **Check the database settings** in `src/main/resources/application.properties`. The defaults are user `root` with an empty password. Change them to match your MySQL setup.
+
+4. **Run the app**:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+   On Windows use `mvnw.cmd spring-boot:run`.
+
+5. **Open the site** at http://localhost:3031
